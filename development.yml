@@ -1,0 +1,8 @@
+---
+- hosts: development
+  vars:
+    jetbrains_toolbox_version: latest
+  roles:
+    - common
+    - development
+    - jaredhocutt.jetbrains_toolbox

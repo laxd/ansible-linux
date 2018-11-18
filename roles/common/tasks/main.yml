@@ -1,0 +1,29 @@
+---
+- name: Install common packages
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - git
+    - openssh
+    - tmux
+    - htop
+    - vim
+
+- name: Checkout dotfiles repo
+  git:
+    repo: https://github.com/laxd/dotfiles
+    dest: /tmp/dotfiles
+
+- name: Copy dotfiles
+  copy:
+    remote_src: true
+    src: "/tmp/dotfiles/{{ dotfile }}"
+    dest: "~/{{ dotfile }}"
+    owner: "{{ dotfile_owner }}"
+    group: "{{ dotfile_owner }}"
+  with_items:
+    - ".vimrc"
+    - ".zshrc"
+    - ".gitignore_global"
+    - ".gitconfig"
