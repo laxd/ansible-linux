@@ -10,5 +10,13 @@
     - lightdm
     - i3-gaps
 
-      # - name: Copy xinitrc file
+- name: Copy xinitrc file
+  template:
+    src: .xinitrc
+    dest: ~/.xinitrc
+
+- name: Copy xprofile file
+  template:
+    src: .xprofile
+    dest: ~/.xprofile
 
