@@ -1,0 +1,14 @@
+---
+- name: Install packages required for a simple GUI
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - xorg-server
+    - xorg-xinit
+    - lightdm-gtk-greeter
+    - lightdm
+    - i3-gaps
+
+      # - name: Copy xinitrc file
+
