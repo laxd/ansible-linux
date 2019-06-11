@@ -5,18 +5,24 @@
     state: present
   with_items:
     - xorg-server
+    - xf86-video-intel
     - xorg-xinit
     - lightdm-gtk-greeter
     - lightdm
-    - i3-gaps
+    - i3
 
-- name: Copy xinitrc file
+- name: Create xinitrc file
   template:
     src: .xinitrc
     dest: ~/.xinitrc
 
-- name: Copy xprofile file
+- name: Create xprofile file
   template:
     src: .xprofile
     dest: ~/.xprofile
 
+- name: Enable lightdm
+  service:
+    name: lightm
+    state: started
+    enabled: yes

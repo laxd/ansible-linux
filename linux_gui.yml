@@ -1,0 +1,8 @@
+---
+- hosts: all
+  vars:
+    user: lawrence
+
+  roles:
+    - linux_common
+    - linux_gui
