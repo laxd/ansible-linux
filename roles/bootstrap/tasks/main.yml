@@ -1,0 +1,32 @@
+---
+
+- name: "Install sudo"
+  package:
+    name: sudo
+    state: present
+
+- name: "Create sudo group"
+  group:
+    name: sudo
+    state: present
+ 
+- name: "Create ansible user"
+  user:
+    name: ansible
+    groups: sudo
+    append: true
+    state: present
+
+- name: "Allow ansible user passwordless sudo"
+  lineinfile:
+    path: /etc/sudoers
+    line: "ansible ALL=(ALL) NOPASSWD: ALL"
+    create: yes
+    validate: /usr/sbin/visudo -cf %s
+
+- name: "Disable root SSH login"
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regex: "PermitRootLogin yes"
+    line: "PermitRootLogin no"
+  notify: Restart SSH
