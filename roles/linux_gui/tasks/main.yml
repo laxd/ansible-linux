@@ -1,5 +1,6 @@
 ---
 - name: Install packages required for a simple GUI
+  become: yes
   package:
     name: "{{ item }}"
     state: present
@@ -22,6 +23,7 @@
     dest: ~/.xprofile
 
 - name: Enable lightdm
+  become: yes
   service:
     name: lightm
     state: started
