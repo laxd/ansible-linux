@@ -10,17 +10,17 @@
     name: sudo
     state: present
  
-- name: "Create ansible user"
+- name: "Create user"
   user:
-    name: ansible
+    name: "{{ user }}"
     groups: sudo
     append: true
     state: present
 
-- name: "Allow ansible user passwordless sudo"
+- name: "Allow sudo group passwordless sudo"
   lineinfile:
     path: /etc/sudoers
-    line: "ansible ALL=(ALL) NOPASSWD: ALL"
+    line: "sudo ALL=(ALL) NOPASSWD: ALL"
     create: yes
     validate: /usr/sbin/visudo -cf %s
 
@@ -30,3 +30,10 @@
     regex: "PermitRootLogin yes"
     line: "PermitRootLogin no"
   notify: Restart SSH
+
+- name: "Copy ansible SSH key"
+  authorized_key:
+    user: "{{ user }}"
+    state: present
+    key: "{{ lookup('file', '/home/{{ user }}/.ssh/id_rsa.pub') }}"
+
