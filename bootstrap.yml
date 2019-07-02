@@ -1,4 +1,11 @@
 ---
 - hosts: all
+  vars_prompt:
+    - name: ansible_ssh_user
+      prompt: "Ansible user for SSH"
+      private: no
+    - name: ansible_ssh_pass
+      prompt: "SSH password"
+      private: yes
   roles:
     - bootstrap

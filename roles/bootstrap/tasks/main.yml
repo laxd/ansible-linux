@@ -31,25 +31,6 @@
     line: "PermitRootLogin no"
   notify: Restart SSH
 
-- name: Check if EPEL repo is already configured.
-  stat:
-    path: "{{ epel_repofile_path }}"
-  register: epel_repofile_result
-  when: ansible_distribution == 'CentOS'
- 
-- name: Install EPEL repo.
-  yum:
-    name: "{{ epel_repo_url }}"
-    state: present
-  register: result
-  when: not epel_repofile_result.stat.exists and ansible_distribution == 'CentOS'
- 
-- name: Import EPEL GPG key.
-  rpm_key:
-    key: "{{ epel_repo_gpg_key_url }}"
-    state: present
-  when: not epel_repofile_result.stat.exists and ansible_distribution == 'CentOS'
-
 - name: "Copy ansible SSH key"
   authorized_key:
     user: "{{ user }}"
