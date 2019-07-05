@@ -2,6 +2,8 @@
 - hosts: all
   vars:
     user: lawrence
+    ntp_timezone: Europe/London
 
   roles:
     - linux_common
+    - { role: geerlingguy.ntp, become: yes }
