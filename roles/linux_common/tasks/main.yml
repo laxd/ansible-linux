@@ -19,10 +19,10 @@
 - name: Copy dotfiles
   copy:
     remote_src: true
-    src: "/tmp/dotfiles/{{ dotfile }}"
-    dest: "~/{{ dotfile }}"
-    owner: "{{ dotfile_owner }}"
-    group: "{{ dotfile_owner }}"
+    src: "/tmp/dotfiles/{{ item }}"
+    dest: "/home/{{ dotfile_user }}/{{ item }}"
+    owner: "{{ dotfile_user }}"
+    group: "{{ dotfile_user }}"
   with_items:
     - ".vimrc"
     - ".zshrc"
