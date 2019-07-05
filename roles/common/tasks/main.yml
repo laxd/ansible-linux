@@ -12,6 +12,17 @@
     - vim
     - zsh
 
+- name: Install useful debugging tools
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - htop
+    - lsof
+    - iotop
+    - sysstat
+
 - name: Checkout dotfiles repo
   git:
     repo: https://github.com/laxd/dotfiles
