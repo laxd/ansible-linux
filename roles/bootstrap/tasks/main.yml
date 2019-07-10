@@ -37,3 +37,9 @@
     state: present
     key: "{{ lookup('file', '/home/{{ user }}/.ssh/id_rsa.pub') }}"
 
+- name: "Disable password login"
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "#PasswordAuthentication yes"
+    line: "PasswordAuthentication no"
+  notify: Restart SSH
