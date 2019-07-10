@@ -62,3 +62,7 @@
     state: absent
   when: ohmyzsh_dir.stat.exists == false
 
+- name: Change user's shell to ZSH
+  user:
+    name: "{{ user }}"
+    shell: /bin/zsh
