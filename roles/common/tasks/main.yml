@@ -6,7 +6,6 @@
     state: present
   with_items:
     - git
-    - openssh
     - tmux
     - htop
     - vim
