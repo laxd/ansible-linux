@@ -1,5 +1,7 @@
 ---
 - hosts: all
+  vars:
+    ask_become_pass: true
   vars_prompt:
     - name: ansible_ssh_user
       prompt: "Ansible user for SSH"
@@ -8,4 +10,4 @@
       prompt: "SSH password"
       private: yes
   roles:
-    - bootstrap
+    - { role: bootstrap, become: yes }
