@@ -1,5 +1,5 @@
 ---
 
 dpi: 160
-wm: i3wm
+wm: i3
 target_user: lawrence

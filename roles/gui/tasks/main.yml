@@ -14,17 +14,17 @@
 
 - name: Create xinitrc file
   template:
-    src: .xinitrc
+    src: .xinitrc.j2
     dest: ~/.xinitrc
 
 - name: Create xprofile file
   template:
-    src: .xprofile
+    src: .xprofile.j2
     dest: ~/.xprofile
 
 - name: Enable lightdm
   become: yes
   service:
-    name: lightm
+    name: lightdm
     state: started
     enabled: yes
