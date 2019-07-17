@@ -63,6 +63,8 @@
   when: ohmyzsh_dir.stat.exists == false
 
 - name: Change user's shell to ZSH
+  become: true
   user:
     name: "{{ user }}"
     shell: /bin/zsh
+    state: present
