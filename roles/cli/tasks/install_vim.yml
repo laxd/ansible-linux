@@ -1,0 +1,28 @@
+---
+
+- name: Install vim
+  package:
+    name: vim
+    state: present
+
+- name: Copy .vimrc file
+  template:
+    src: .vimrc.j2
+    dest: "/home/{{ user }}/.vimrc"
+
+- name: Create vim bundle directory
+  file:
+    path: "/home/{{ user }}/.vim/bundle"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+
+- name: Install vim plugins
+  git:
+    repo: "https://github.com/{{ item }}"
+    dest: "/home/{{ user }}/.vim/bundle/"
+    update: no
+  with_items:
+    - "gmarik/Vundle.vim"
+    - "rustushki/JavaImp.vim"
+    - "davidhalter/jedi-vim"

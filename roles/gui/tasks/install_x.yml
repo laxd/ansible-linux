@@ -1,0 +1,29 @@
+---
+- name: Install packages for an X server
+  become: yes
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - xorg-server
+    - xf86-video-intel
+    - xorg-xinit
+    - lightdm-gtk-greeter
+    - lightdm
+
+- name: Create xinitrc file
+  template:
+    src: .xinitrc.j2
+    dest: ~/.xinitrc
+
+- name: Create xprofile file
+  template:
+    src: .xprofile.j2
+    dest: ~/.xprofile
+
+- name: Enable lightdm
+  become: yes
+  service:
+    name: lightdm
+    state: started
+    enabled: yes

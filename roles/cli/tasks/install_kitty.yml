@@ -1,0 +1,6 @@
+---
+
+- name: Install kitty
+  package:
+    name: kitty
+    state: present

@@ -1,0 +1,11 @@
+---
+
+- name: Install tmux
+  package:
+    name: tmux
+    state: present
+
+- name: Install tmux config
+  template:
+    src: .tmux.conf.j2
+    dest: "/home/{{ user }}/.tmux.conf"

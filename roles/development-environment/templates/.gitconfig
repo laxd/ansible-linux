@@ -1,0 +1,11 @@
+[user]
+	name = {{ user_full_name }}
+    email = {{ user_email }}
+[push]
+	default = simple
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = vim
+	autocrlf = input
+[web]
+	browser = firefox

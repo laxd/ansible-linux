@@ -1,0 +1,7 @@
+---
+
+- name: Install python
+  become: true
+  package:
+    name: "{{ python_package_name }}"
+    state: present

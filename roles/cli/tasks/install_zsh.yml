@@ -1,0 +1,43 @@
+---
+
+- name: Install zsh
+  package:
+    name: zsh
+    state: present
+
+- name: Check if oh-my-zsh is installed
+  stat:
+    path: /home/{{ user }}/.oh-my-zsh
+  register: ohmyzsh_dir
+
+- name: Download oh-my-zsh installer
+  get_url:
+    url: https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+    dest: /tmp/oh-my-zsh_installer.sh
+    mode: '0777'
+  when: ohmyzsh_dir.stat.exists == false
+
+- name: Install oh-my-zsh
+  shell: /tmp/oh-my-zsh_installer.sh
+  when: ohmyzsh_dir.stat.exists == false
+
+- name: Remove oh-my-zsh installer
+  file:
+    path: /tmp/oh-my-zsh_installer.sh
+    state: absent
+  when: ohmyzsh_dir.stat.exists == false
+
+- name: Copy .zshrc
+  template:
+    src: ".zshrc.j2"
+    dest: "/home/{{ user }}/.zshrc"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: "0744"
+
+- name: Change shell to ZSH
+  become: true
+  user:
+    name: "{{ user }}"
+    shell: /bin/zsh
+    state: present

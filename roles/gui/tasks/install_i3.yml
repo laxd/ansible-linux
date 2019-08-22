@@ -1,0 +1,21 @@
+---
+- name: Install i3
+  become: yes
+  package:
+    name: i3
+    state: present
+
+- name: Create i3 config
+  template:
+    src: .i3config.j2
+    dest: "/home/{{ user }}/.config/i3/config"
+
+- name: Install py3status
+  package:
+    name: py3status
+    state: present
+
+- name: Create py3status config
+  template:
+    src: .py3status.config
+    dest: "/home/{{ user }}/.config/i3status/config

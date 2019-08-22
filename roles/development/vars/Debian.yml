@@ -1,6 +1,0 @@
----
-packages:
-  - python
-  - python-pip
-  - docker
-  - docker-compose

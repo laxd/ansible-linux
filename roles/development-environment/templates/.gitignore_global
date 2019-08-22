@@ -1,0 +1,33 @@
+# Log files
+*.log
+log.out
+
+# Compiled code
+build
+target
+*.class
+*.jar 
+*.war
+*.pyc
+
+# Packages
+*.zip
+*.tar
+*.rar
+*.gz
+
+# IDE/build files
+.gradle
+mvn.txt
+*.iml
+.idea
+.classpath
+.project
+venv
+.ropeproject
+
+# Temp files
+*.tmp
+.*.sw*
+
+.gradletasknamecache

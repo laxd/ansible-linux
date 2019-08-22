@@ -3,6 +3,7 @@ dpi: 160
 wm: i3
 
 docker_edition: 'ce'
+docker-package: docker
 docker_package_state: present
 docker_install_compose: true
 docker_users:

@@ -1,0 +1,21 @@
+---
+
+- name: Install git
+  package:
+    name: git
+    state: present
+
+- name: Install tig
+  package:
+    name: tig
+    state: present
+ 
+- name: Create gitignore file
+  template:
+    name: .gitignore_global.j2
+    dest: "/home/{{ user }}/.gitignore_global"
+
+- name: Create gitconfig
+  template:
+    name: .gitconfig.j2
+    dest: "/home/{{ user }}/.gitconfig"

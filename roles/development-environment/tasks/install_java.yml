@@ -1,0 +1,7 @@
+---
+
+- name: Install java
+  become: true
+  package:
+    name: "{{ java_package_name }}"
+    state: present

@@ -1,0 +1,11 @@
+---
+
+- name: Install general linux tools
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - htop
+    - lsof
+    - iotop
+    - sysstat
