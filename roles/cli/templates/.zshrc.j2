@@ -1,3 +1,4 @@
+#jinja2:variable_start_string:'[%', variable_end_string:'%]', trim_blocks: False 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
@@ -5,7 +6,7 @@ export ZSH=~/.oh-my-zsh
 ZSH_THEME="agnoster"
 
 # Required properties for theme
-DEFAULT_USER="{{ user }}"
+DEFAULT_USER="[% user %]"
 
 # Plugins to load (from ~/.oh-my-zsh/plugins)
 plugins=(git cp docker pip archlinux systemd)

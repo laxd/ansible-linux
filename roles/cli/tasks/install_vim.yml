@@ -13,16 +13,28 @@
 - name: Create vim bundle directory
   file:
     path: "/home/{{ user }}/.vim/bundle"
+    state: directory
     owner: "{{ user }}"
     group: "{{ user }}"
     mode: 0755
 
-- name: Install vim plugins
+- name: Install Vundle
   git:
-    repo: "https://github.com/{{ item }}"
-    dest: "/home/{{ user }}/.vim/bundle/"
+    repo: "https://github.com/gmarik/Vundle.vim/"
+    dest: "/home/{{ user }}/.vim/bundle/Vundle.vim"
     update: no
-  with_items:
-    - "gmarik/Vundle.vim"
-    - "rustushki/JavaImp.vim"
-    - "davidhalter/jedi-vim"
+    version: "v0.10.2"
+
+- name: Install JavaImp
+  git:
+    repo: "https://github.com/rustushki/JavaImp.vim"
+    dest: "/home/{{ user }}/.vim/bundle/JavaImp.vim"
+    update: no
+    version: "2.2.3"
+
+- name: Install jedi-vim
+  git:
+    repo: "https://github.com/davidhalter/jedi-vim"
+    dest: "/home/{{ user }}/.vim/bundle/jedi-vim"
+    update: no
+    version: "0.10.0"

@@ -1,0 +1,17 @@
+---
+- name: Install urxvt
+  package:
+    name: rxvt
+    state: present
+
+- name: Create .Xdefaults file
+  template:
+    src: .Xdefaults
+    dest: "/home/{{ user }}/.Xdefaults"
+
+# TODO: Create urxvtd script
+    # - name: Enable urxvtd service
+    # service:
+    # name: urxvtd
+    # state: started
+    # enabled: yes
