@@ -5,14 +5,9 @@
     url: https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
     dest: "/home/{{ user }}/.local/share/fonts/"
     mode: 0755
-  register: downloaded
-
-- name: Update font cache
-  command: "fc-cache -vf /home/{{ user }}/.local/share/fonts"
-  when: downloaded.changed
+  notify: Clear font cache
 
 - name: Create font config file
   template:
     src: 10-powerline-symbols.conf.j2
     dest: "/home/{{ user }}/.config/fontconfig/conf.d/"
-

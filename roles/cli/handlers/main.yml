@@ -1,2 +1,4 @@
 ---
-# handlers file for cli
+
+- name: Clear font cache
+  command: "fc-cache -vf /home/{{ user }}/.local/share/fonts"
