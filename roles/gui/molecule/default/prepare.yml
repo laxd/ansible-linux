@@ -1,0 +1,13 @@
+---
+- name: Prepare
+  hosts: archlinux
+  tasks:
+  # As arch linux is a rolling release, we need to make sure it is up to date"
+  - name: "Update packages"
+    become: true
+    command: "pacman -Sy"
+
+  - name: "Create dummy user"
+    user:
+      name: "lawrence"
+      state: present

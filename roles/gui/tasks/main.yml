@@ -1,4 +1,7 @@
 ---
 
 - import_tasks: install_x.yml
+  when: ansible_os_family == 'Archlinux'
+
 - import_tasks: install_i3.yml
+- import_tasks: install_kitty.yml

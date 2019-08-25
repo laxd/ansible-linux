@@ -1,5 +1,5 @@
 ---
-- name: Install packages for an X server
+- name: Install X server packages
   become: yes
   package:
     name: "{{ item }}"
