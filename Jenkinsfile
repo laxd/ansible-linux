@@ -41,6 +41,18 @@ pipeline {
                         }
                     }
                 }
+                stage('Test gui') {
+                    agent {
+                        docker {
+                            image 'quay.io/ansible/molecule'
+                        }
+                    }
+                    steps {
+                        dir('roles/gui') {
+                            sh 'molecule test'
+                        }
+                    }
+                }
             }
         }
     }
