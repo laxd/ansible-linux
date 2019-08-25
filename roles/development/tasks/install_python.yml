@@ -5,3 +5,10 @@
   package:
     name: "{{ python_package_name }}"
     state: present
+
+- name: Install pip
+  become: true
+  package:
+    name: python-pip
+    state: present
+
