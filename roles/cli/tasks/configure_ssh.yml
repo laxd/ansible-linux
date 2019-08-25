@@ -1,0 +1,32 @@
+---
+
+- name: Install {{ item }}
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - ssh
+    - mosh
+
+- name: Ensure ssh dir is present
+  file:
+    path: "/home/{{ user }}/.ssh"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0700
+
+- name: Create ssh config file
+  template:
+    src: .ssh_config.j2
+    dest: "/home/{{ user }}/.ssh/config"
+    mode: 0700
+
+# TODO: Figure out where to store this...
+    #- name: Create github ssh private key
+    #  copy:
+    #    src: 
+    #    path: "/home/{{ user }}/.ssh/github"
+    #    owner: "{{ user }}"
+    #    group: "{{ user }}"
+    #    mode: 0700
