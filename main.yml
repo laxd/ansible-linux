@@ -1,9 +1,8 @@
 ---
 - hosts: all
-
   roles:
-      #- base
-      #- cli
-    - development-environment
-      #- gui
-      #- laptop
+    - base
+    - cli
+    - development
+    - gui
+    - laptop
