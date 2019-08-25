@@ -1,6 +1,6 @@
 ---
 
-- name: Install {{ item }}
+- name: Ensure SSH is installed
   package:
     name: "{{ item }}"
     state: present
@@ -8,7 +8,7 @@
     - ssh
     - mosh
 
-- name: Ensure ssh dir is present
+- name: Ensure ~/.ssh dir is present
   file:
     path: "/home/{{ user }}/.ssh"
     state: directory
@@ -16,7 +16,7 @@
     group: "{{ user }}"
     mode: 0700
 
-- name: Create ssh config file
+- name: Create SSH config file
   template:
     src: .ssh_config.j2
     dest: "/home/{{ user }}/.ssh/config"
