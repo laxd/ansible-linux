@@ -1,0 +1,11 @@
+---
+
+# TODO: Set intellij version
+- include_role:
+    name: "{{ item }}"
+  loop:
+    - geerlingguy.java
+    - gantsign.intellij
+
+- import_tasks: install_git.yml
+- import_tasks: install_python.yml

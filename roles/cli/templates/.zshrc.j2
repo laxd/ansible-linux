@@ -24,6 +24,20 @@ export TERM=rxvt
 # Aliases
 alias open="xdg-open"
 alias tojson="python -m json.tool"
+alias ls="ls -al"
+
+cdd() {
+    cd $1 && ls
+}
+
+cpp() {
+    cp -r $*
+}
+
+mvv() {
+    mv -r $*
+}
+
 
 # Functions
 mvln() {

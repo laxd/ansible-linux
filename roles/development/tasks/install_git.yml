@@ -1,5 +1,4 @@
 ---
-
 - name: Install git
   package:
     name: git
@@ -9,7 +8,7 @@
   package:
     name: tig
     state: present
- 
+
 - name: Create gitignore file
   template:
     name: .gitignore_global.j2
