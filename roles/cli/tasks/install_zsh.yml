@@ -35,6 +35,12 @@
       state: absent
   when: not ohmyzsh_dir.stat.exists
 
+- name: Install zsh theme
+  git:
+    repo: https://github.com/bhilburn/powerlevel9k.git
+    dest: "/home/{{ user }}/.oh-my-zsh/custom/themes/powerlevel9k"
+    version: 0.6.7
+
 - name: Copy .zshrc
   template:
     src: ".zshrc.j2"
