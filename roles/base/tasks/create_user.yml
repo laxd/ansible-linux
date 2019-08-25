@@ -1,0 +1,11 @@
+---
+- name: Create user
+  user:
+    name: "{{ user }}"
+    state: present
+
+- name: Copy ssh key from local user
+  authorized_key:
+    user: "{{ user }}"
+    state: present
+    key: "{{ lookup('file', '/home/{{ user }}/.ssh/id_rsa.pub') }}"
