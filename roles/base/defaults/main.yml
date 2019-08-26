@@ -1,3 +1,4 @@
 ---
 user: lawrence
+ssh_key_create: false
 # defaults file for base

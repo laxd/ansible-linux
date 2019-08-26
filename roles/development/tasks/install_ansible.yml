@@ -1,5 +1,11 @@
 ---
-
 - name: Install ansible
+  become: true
   pip:
     name: ansible
+
+    # TODO: Figure out why this won't install (pyyaml?)
+    #- name: Install molecule
+    #  become: true
+    #  pip:
+    #    name: molecule

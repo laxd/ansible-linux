@@ -3,7 +3,7 @@
 - name: Install python
   become: true
   package:
-    name: "{{ python_package_name }}"
+    name: "python"
     state: present
 
 - name: Install pip

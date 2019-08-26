@@ -8,4 +8,5 @@
   authorized_key:
     user: "{{ user }}"
     state: present
-    key: "{{ lookup('file', '/home/{{ user }}/.ssh/id_rsa.pub') }}"
+    key: "{{ ssh_key_loc }}"
+  when: "{{ ssh_key_create }}"
