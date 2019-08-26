@@ -1,11 +1,12 @@
 ---
 
 - name: Ensure SSH is installed
+  become: true
   package:
     name: "{{ item }}"
     state: present
   loop:
-    - ssh
+    - openssh
     - mosh
 
 - name: Ensure ~/.ssh dir is present

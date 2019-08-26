@@ -1,6 +1,12 @@
 ---
 
+- name: Update repository
+  become: true
+  command: pacman -Sy
+  when: ansible_os_family == 'Archlinux'
+
 - name: Install general linux tools
+  become: true
   package:
     name: "{{ item }}"
     state: present

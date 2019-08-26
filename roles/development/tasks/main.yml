@@ -2,6 +2,8 @@
 
 - include_role:
     name: geerlingguy.java
+  vars:
+    java_packages: []
 
 - include_role:
     name: gantsign.intellij
@@ -17,7 +19,6 @@
     docker_service_state: started
     docker_service_enabled: true
 
+- import_tasks: install_git.yml
 - import_tasks: install_python.yml
 - import_tasks: install_ansible.yml
-- import_tasks: install_molecule.yml
-- import_tasks: install_git.yml

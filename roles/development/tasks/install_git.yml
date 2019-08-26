@@ -1,20 +1,28 @@
 ---
 - name: Install git
+  become: true
   package:
     name: git
     state: present
 
 - name: Install tig
+  become: true
   package:
     name: tig
     state: present
 
 - name: Create gitignore file
   template:
-    name: .gitignore_global.j2
+    src: .gitignore_global.j2
     dest: "/home/{{ user }}/.gitignore_global"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
 
 - name: Create gitconfig
   template:
-    name: .gitconfig.j2
+    src: .gitconfig.j2
     dest: "/home/{{ user }}/.gitconfig"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
