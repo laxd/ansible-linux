@@ -2,3 +2,6 @@
 
 - name: Clear font cache
   command: "fc-cache -vf /home/{{ user }}/.local/share/fonts"
+
+- name: VundleInstall
+  command: "vim +PluginInstall +qall"

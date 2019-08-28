@@ -24,6 +24,4 @@
     dest: "/home/{{ user }}/.vim/bundle/Vundle.vim"
     update: no
     version: "v0.10.2"
-
-- name: Allow Vundle to install plugins
-  command: vim +PluginInstall +qall
+  notify: VundleInstall

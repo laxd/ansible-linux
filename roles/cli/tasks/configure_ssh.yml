@@ -1,6 +1,6 @@
 ---
 
-- name: Ensure SSH is installed
+- name: Ensure SSH is installed (Arch)
   become: true
   package:
     name: "{{ item }}"
@@ -8,6 +8,17 @@
   loop:
     - openssh
     - mosh
+  when: ansible_os_family == 'Archlinux'
+
+- name: Ensure SSH is installed (non-Arch)
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - ssh
+    - mosh
+  when: not ansible_os_family == 'Archlinux'
 
 - name: Ensure ~/.ssh dir is present
   file:
@@ -22,12 +33,3 @@
     src: .ssh_config.j2
     dest: "/home/{{ user }}/.ssh/config"
     mode: 0700
-
-# TODO: Figure out where to store this...
-    #- name: Create github ssh private key
-    #  copy:
-    #    src: 
-    #    path: "/home/{{ user }}/.ssh/github"
-    #    owner: "{{ user }}"
-    #    group: "{{ user }}"
-    #    mode: 0700
