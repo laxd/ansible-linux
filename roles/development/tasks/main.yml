@@ -8,6 +8,15 @@
   vars:
     intellij_version: 2017.2.6
 
+- include_role:
+    name: geerlingguy.docker
+  vars:
+    docker_users:
+      - "{{ user }}"
+    docker_install_compose: true
+    docker_service_state: started
+    docker_service_enabled: true
+
 - import_tasks: install_python.yml
 - import_tasks: install_ansible.yml
 - import_tasks: install_molecule.yml
