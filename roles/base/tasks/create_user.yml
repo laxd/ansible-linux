@@ -4,15 +4,9 @@
     name: "{{ user }}"
     state: present
 
-- name: Check ssh key exists
-  local_action:
-    stat:
-      path: "{{ ssh_key_loc }}"
-  register: ssh_key
-
 - name: Copy ssh key from local user
   authorized_key:
     user: "{{ user }}"
     state: present
-    key: "{{ ssh_key_loc }}"
-  when: ssh_key.stat.exists
+    key: "{{ lookup('file', ssh_key_loc) }}"
+  when: ssh_key_loc is defined
