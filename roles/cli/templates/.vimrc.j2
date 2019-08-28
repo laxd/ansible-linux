@@ -7,8 +7,7 @@ set number
 " Set relative line numbers for all other lines
 set relativenumber
 
-" Be iMproved
-set nocompatible
+" Be iMproved set nocompatible
 
 " Syntax checking etc
 syntax on
@@ -50,26 +49,29 @@ set tabstop=4
 """"""""""""""""""
 
 filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ctrlpvim/ctrlp.vim'
+
+call vundle#end()
 filetype plugin indent on
 
 """"""""""""""""""
-" NETRW SETTINGS
+" NERDTREE SETTINGS
 """"""""""""""""""
 
-" Remove banner
-let g:netwr_banner = 0
-" Set netrw size to 25%
-let g:netrw_winsize = 25
-" Vertical split on choosing file
-let g:netrw_browse_split = 2
+" Open NERDTree when starting vim
+autocmd vimenter * NERDTree
 
-" Map Ctrl+n to open netrw window
-map <C-n> :Explore<CR>
+" Show hidden files by default
+let NERDTreeShowHidden=1
 
-""""""""""""""""""
-" JAVAIMP SETTINGS
-""""""""""""""""""
+" Map Ctrl+n to open NERDTree window
+map <C-n> :NERDTreeToggle<CR>
 
-let g:JavaImpPaths = 
-	\ "/home/{{ user }}/.m2/repositories," .
-	\ "/home/{{ user }}/.gradle/caches/modules-2/files-2.1"
+" Automatically close NERDTree if we have closed all other windows
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
