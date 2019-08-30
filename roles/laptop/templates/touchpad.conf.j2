@@ -1,0 +1,18 @@
+Section "InputClass"
+    Identifier "touchpad"
+    Driver "libinput"
+    MatchIsTouchpad "on"
+        # Allow tapping to click/drag
+        Option "Tapping" "on"
+        Option "TappingDrag" "on"
+
+        # Remove click areas
+        # amount of fingers dictates function
+        Option "ClickMethod" "clickfinger"
+
+        # 1 finger -> left mouse
+        # 2 finger -> right mouse
+        # 3 finger -> middle mouse
+        Option "TappingButtonMap" "lrm"
+
+EndSection
