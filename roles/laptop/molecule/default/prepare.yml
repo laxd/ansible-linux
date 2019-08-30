@@ -1,0 +1,12 @@
+---
+- name: Prepare
+  hosts: all
+  tasks:
+  - name: Create user for testing
+    user:
+      name: "lawrence"
+      append: yes
+
+  - name: Update package cache (Arch)
+    command: "pacman -Sy"
+    when: ansible_os_family == 'Archlinux'
