@@ -15,6 +15,7 @@
 
     # intellij vars
     intellij_version: 2017.2.6
+    intellij_edition: ultimate
 
     # docker vars
     docker_users:
