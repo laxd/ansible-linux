@@ -1,6 +1,7 @@
 ---
 
 - name: Install kitty
+  become: true
   package:
     name: kitty
     state: present

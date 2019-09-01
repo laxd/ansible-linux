@@ -3,4 +3,32 @@
   roles:
     - base
     - cli
+
+- hosts: gui
+  roles:
+    - gui 
+
+- hosts: dev
+  vars:
+    # java vars
+    java_packages: []
+
+    # intellij vars
+    intellij_version: 2017.2.6
+
+    # docker vars
+    docker_users:
+      - "{{ user }}"
+    docker_package: docker
+    docker_install_compose: true
+    docker_service_state: started
+    docker_service_enabled: true
+  roles:
     - development
+    - geerlingguy.java
+    - gantsign.intellij
+    - {role: geerlingguy.docker, become: true}
+
+- hosts: laptop
+  roles:
+    - laptop

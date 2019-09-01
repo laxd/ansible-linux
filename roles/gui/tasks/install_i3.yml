@@ -20,6 +20,7 @@
     dest: "/home/{{ user }}/.config/i3/config"
 
 - name: Install py3status
+  become: true
   package:
     name: py3status
     state: present

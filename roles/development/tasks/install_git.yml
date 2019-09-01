@@ -2,15 +2,11 @@
 - name: Install git
   become: true
   package:
-    name: git
+    name:
+      - git
+      - tig
     state: present
-
-- name: Install tig
-  become: true
-  package:
-    name: tig
-    state: present
-
+      
 - name: Create gitignore file
   template:
     src: .gitignore_global.j2
