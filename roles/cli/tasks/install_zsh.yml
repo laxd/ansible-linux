@@ -25,7 +25,7 @@
       mode: '0777'
 
   - name: Install oh-my-zsh
-    command: /tmp/oh-my-zsh_installer.sh
+    command: /tmp/oh-my-zsh_installer.sh --unattended
     become: true
     become_user: "{{ user }}"
 
