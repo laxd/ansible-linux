@@ -1,17 +1,23 @@
 ---
 
-- name: Update repository
+- name: Install linux tools (Arch)
   become: true
-  command: pacman -Sy
+  pacman:
+    update_cache: true
+    name:
+      - htop
+      - lsof
+      - iotop
+      - sysstat
+    state: present
   when: ansible_os_family == 'Archlinux'
 
-- name: Install general linux tools
+- name: Install linux tools (non-Arch)
   become: true
   package:
-    name: "{{ item }}"
+    name:
+      - htop
+      - lsof
+      - iotop
+      - sysstat
     state: present
-  with_items:
-    - htop
-    - lsof
-    - iotop
-    - sysstat
