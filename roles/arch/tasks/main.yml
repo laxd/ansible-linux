@@ -1,5 +1,3 @@
 ---
 
-- import_tasks: install_zsh.yml
-- import_tasks: install_vim.yml
-- import_tasks: configure_ssh.yml
+- import_tasks: install_yay.yml

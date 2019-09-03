@@ -7,6 +7,6 @@
       name: "lawrence"
       append: yes
 
-  - name: Update package cache (Arch)
-    command: "pacman -Sy"
-    when: ansible_os_family == 'Archlinux'
+  - name: Update package cache 
+    pacman:
+      update-cache: yes

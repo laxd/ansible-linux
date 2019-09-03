@@ -4,6 +4,10 @@
     - base
     - cli
 
+- hosts: arch
+  roles:
+    - arch
+
 - hosts: gui
   roles:
     - gui 
