@@ -18,6 +18,18 @@
   roles:
     - gui 
 
+- hosts: docker-hosts
+  become: true
+  vars:
+    docker_users:
+      - lawrence
+    docker_package: docker
+    docker_install_compose: true
+    docker_service_state: started
+    docker_service_enabled: true
+  roles:
+    - geerlingguy.docker
+
 - hosts: dev
   vars:
     user: lawrence
@@ -30,19 +42,10 @@
     # intellij vars
     intellij_version: 2017.2.6
     intellij_edition: ultimate
-
-    # docker vars
-    docker_users:
-      - "{{ user }}"
-    docker_package: docker
-    docker_install_compose: true
-    docker_service_state: started
-    docker_service_enabled: true
   roles:
     - development
     - geerlingguy.java
     - gantsign.intellij
-    - {role: geerlingguy.docker, become: true}
 
 - hosts: laptop
   roles:
