@@ -1,0 +1,53 @@
+---
+- name: Install X server packages
+  become: yes
+  package:
+    name:
+      - xorg-server
+      - xf86-video-intel
+      - xorg-xinit
+      - lightdm-gtk-greeter
+      - lightdm
+    state: present
+
+- name: Create xprofile file
+  template:
+    src: .xprofile.j2
+    dest: ~/.xprofile
+
+- name: Enable lightdm
+  become: yes
+  service:
+    name: lightdm
+    state: started
+    enabled: yes
+
+- name: Install i3 packages
+  become: yes
+  package:
+    name: 
+      - i3
+      - py3status
+    state: present
+
+- name: Ensure i3 config directories exist
+  file:
+    path: 
+    state: directory
+    recurse: yes
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+  loop:
+    - "/home/{{ user }}/.config/i3/"
+    - "/home/{{ user }}/.config/i3status/"
+
+- name: Create i3 config
+  template:
+    src: .i3config.j2
+    dest: "/home/{{ user }}/.config/i3/config"
+
+- name: Create py3status config
+  template:
+    src: .py3status.config.j2
+    dest: "/home/{{ user }}/.config/i3status/config"
