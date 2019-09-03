@@ -1,0 +1,7 @@
+---
+
+- name: Install paman utils
+  pacman:
+    name: pacman-contrib
+    state: present
+    update-cache: true
