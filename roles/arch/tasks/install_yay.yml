@@ -7,9 +7,9 @@
 - name: Install yay
   block: 
   - name: Install dependencies
+    become: true
     pacman:
       name:
-        - makepkg
         - fakeroot
         - go
         - git
