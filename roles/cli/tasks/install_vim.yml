@@ -1,6 +1,7 @@
 ---
 
 - name: Install vim
+  become: true
   package:
     name: vim
     state: present
@@ -10,18 +11,28 @@
     src: .vimrc.j2
     dest: "/home/{{ user }}/.vimrc"
 
-- name: Create vim bundle directory
-  file:
+- name: Check vim plugins are installed
+  stat:
     path: "/home/{{ user }}/.vim/bundle"
-    state: directory
-    owner: "{{ user }}"
-    group: "{{ user }}"
-    mode: 0755
+  register: vim_plugins
 
-- name: Install Vundle
-  git:
-    repo: "https://github.com/VundleVim/Vundle.vim/"
-    dest: "/home/{{ user }}/.vim/bundle/Vundle.vim"
-    update: no
-    version: "v0.10.2"
-  notify: VundleInstall
+- name: Install vundle plugins
+  block:
+  - name: Create vim plugin directory
+    file:
+      path: "/home/{{ user }}/.vim/bundle"
+      state: directory
+      owner: "{{ user }}"
+      group: "{{ user }}"
+      mode: 0755
+
+  - name: Install Vundle
+    git:
+      repo: "https://github.com/VundleVim/Vundle.vim/"
+      dest: "/home/{{ user }}/.vim/bundle/Vundle.vim"
+      update: no
+      version: "v0.10.2"
+
+  - name: Install vim plugins
+    command: "vim +VundleInstall +qall"
+  when: not vim_plugins.stat.exists
