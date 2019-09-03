@@ -32,7 +32,7 @@
 
 - name: Ensure i3 config directories exist
   file:
-    path: 
+    path: "{{ dir }}"
     state: directory
     recurse: yes
     owner: "{{ user }}"
@@ -41,6 +41,8 @@
   loop:
     - "/home/{{ user }}/.config/i3/"
     - "/home/{{ user }}/.config/i3status/"
+  loop_control:
+    loop_var: dir
 
 - name: Create i3 config
   template:
