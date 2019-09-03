@@ -21,7 +21,7 @@
       dest: /tmp/yay_installer/
 
   - name: Install yay
-    command: makepkg -si
+    command: makepkg -si --noconfirm
     args:
       chdir: /tmp/yay_installer/
   always:
