@@ -1,5 +1,4 @@
 ---
 
-- import_tasks: create_user.yml
 - import_tasks: install_tools.yml
 - import_tasks: install_tmux.yml

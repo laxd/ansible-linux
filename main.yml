@@ -1,19 +1,29 @@
 ---
 - hosts: all
+  vars:
+    user: lawrence
   roles:
     - base
     - cli
 
 - hosts: arch
+  vars:
+    user: lawrence
   roles:
     - arch
 
 - hosts: gui
+  vars:
+    user: lawrence
   roles:
     - gui 
 
 - hosts: dev
   vars:
+    user: lawrence
+    user_full_name: "Lawrence Andrews"
+    user_email: "lawrence@lawrenceandrews.co.uk"
+
     # java vars
     java_packages: []
 
