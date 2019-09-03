@@ -29,4 +29,4 @@
       file:
         path: /tmp/yay_installer/
         state: absent
-  when: yay_installation.stat.exists
+  when: not yay_installation.stat.exists
