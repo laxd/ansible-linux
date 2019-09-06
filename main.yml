@@ -23,7 +23,7 @@
   vars:
     docker_users:
       - lawrence
-    docker_package: docker
+    docker_package: "{{ 'docker' if ansible_os_family == 'Archlinux' else 'docker-ce' }}"
     docker_install_compose: true
     docker_service_state: started
     docker_service_enabled: true
