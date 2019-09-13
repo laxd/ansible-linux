@@ -11,6 +11,9 @@
     pacman:
       name:
         - fakeroot
+        - binutils
+        - gcc
+        - make
         - go
         - git
       state: present
