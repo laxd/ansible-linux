@@ -1,4 +1,5 @@
 ---
 
 - src: geerlingguy.java
+- src: geerlingguy.docker
 - src: gantsign.intellij
