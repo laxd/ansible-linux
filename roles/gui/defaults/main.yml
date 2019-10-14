@@ -1,2 +1,5 @@
 ---
 dpi: 160
+terminal_package: termite
+terminal_executable: termite
+terminal_config_location: /home/{{ user }}/.config/termite/config

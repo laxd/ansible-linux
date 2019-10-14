@@ -3,10 +3,10 @@
 - name: Install terminal
   become: true
   package:
-    name: termite
+    name: {{ terminal_package }}
     state: present
 
 - name: Create terminal config
   template:
-    src: termite.config.j2
-    dest: "/home/{{ user }}/.config/termite/config"
+    src: terminal_config.j2
+    dest: "{{ terminal_config_location }}"
