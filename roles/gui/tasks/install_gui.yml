@@ -28,6 +28,7 @@
     name: 
       - i3
       - py3status
+      - rofi
     state: present
 
 - name: Ensure i3 config directories exist
