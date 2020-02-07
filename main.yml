@@ -1,12 +1,13 @@
 ---
 - hosts: all
+  gather_facts: true
   vars:
     user: lawrence
   roles:
     - base
     - cli
 
-- hosts: arch
+- hosts: archlinux
   vars:
     user: lawrence
   roles:

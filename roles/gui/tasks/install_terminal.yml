@@ -3,8 +3,14 @@
 - name: Install terminal
   become: true
   package:
-    name: {{ terminal_package }}
+    name: "{{ terminal_package }}"
     state: present
+
+- name: Ensure config dir exists
+  file:
+    path: "{{ terminal_config_location | dirname }}"
+    state: directory
+    recurse: yes
 
 - name: Create terminal config
   template:

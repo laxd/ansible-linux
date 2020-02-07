@@ -1,17 +1,5 @@
 ---
 
-- name: Install linux tools (Arch)
-  become: true
-  pacman:
-    update_cache: true
-    name:
-      - htop
-      - lsof
-      - iotop
-      - sysstat
-    state: present
-  when: ansible_os_family == 'Archlinux'
-
 - name: Install linux tools (non-Arch)
   become: true
   package:
