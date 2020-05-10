@@ -11,28 +11,31 @@
     src: .vimrc.j2
     dest: "/home/{{ user }}/.vimrc"
 
-- name: Check vim plugins are installed
-  stat:
+- name: Create vim plugin directory
+  file:
     path: "/home/{{ user }}/.vim/bundle"
-  register: vim_plugins
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
 
-- name: Install vundle plugins
-  block:
-  - name: Create vim plugin directory
-    file:
-      path: "/home/{{ user }}/.vim/bundle"
-      state: directory
-      owner: "{{ user }}"
-      group: "{{ user }}"
-      mode: 0755
+- name: Install Vundle
+  git:
+    repo: "https://github.com/VundleVim/Vundle.vim/"
+    dest: "/home/{{ user }}/.vim/bundle/Vundle.vim"
+    update: no
+    version: "v0.10.2"
 
-  - name: Install Vundle
-    git:
-      repo: "https://github.com/VundleVim/Vundle.vim/"
-      dest: "/home/{{ user }}/.vim/bundle/Vundle.vim"
-      update: no
-      version: "v0.10.2"
+- name: Install vim plugins
+  command: "vim +VundleInstall +qall"
 
-  - name: Install vim plugins
-    command: "vim +VundleInstall +qall"
-  when: not vim_plugins.stat.exists
+- name: Install dependencies for YouCompleteMe
+  become: true
+  package:
+    name:
+      - cmake
+      - gcc
+    state: present
+
+- name: Install YouCompleteMe module
+  command: "/home/{{ user }}/.vim/bundle/YouCompleteMe/install.py --java-completer --ts-completer"
