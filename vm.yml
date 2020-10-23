@@ -1,0 +1,7 @@
+---
+- hosts: vm
+  roles:
+    - base
+    - cli
+    - ../ansible-arch-gui
+    - ../ansible-vnc

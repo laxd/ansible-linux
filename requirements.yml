@@ -1,5 +1,8 @@
 ---
 
+- src: geerlingguy.ntp
 - src: geerlingguy.java
 - src: geerlingguy.docker
 - src: gantsign.intellij
+- src: dj-wasabi.telegraf
+- src: laxd.vnc

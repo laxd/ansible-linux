@@ -1,11 +1,19 @@
 ---
 - hosts: all
   gather_facts: true
+  become: true
   vars:
     user: lawrence
   roles:
     - base
     - cli
+    - geerlingguy.ntp
+
+- hosts: physical
+  vars:
+    telegraf_agent_package_state: latest
+  roles:
+    - dj-wasabi.telegraf
 
 - hosts: archlinux
   vars:
@@ -13,11 +21,15 @@
   roles:
     - arch
 
+- hosts: vm
+  roles:
+    - laxd.vnc
+
 - hosts: gui
   vars:
     user: lawrence
   roles:
-    - gui 
+    - ../ansible-arch-gui 
 
 - hosts: docker-hosts
   become: true
@@ -48,6 +60,6 @@
     - geerlingguy.java
     - gantsign.intellij
 
-- hosts: laptop
+- hosts: zen.laxd.uk
   roles:
     - laptop

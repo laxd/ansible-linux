@@ -28,14 +28,3 @@
 
 - name: Install vim plugins
   command: "vim +VundleInstall +qall"
-
-- name: Install dependencies for YouCompleteMe
-  become: true
-  package:
-    name:
-      - cmake
-      - gcc
-    state: present
-
-- name: Install YouCompleteMe module
-  command: "/home/{{ user }}/.vim/bundle/YouCompleteMe/install.py --java-completer --ts-completer"

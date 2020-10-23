@@ -1,0 +1,6 @@
+---
+- hosts: gui
+  vars:
+    user: lawrence
+  roles:
+    - ../ansible-arch-gui 
