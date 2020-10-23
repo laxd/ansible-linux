@@ -29,7 +29,7 @@
   vars:
     user: lawrence
   roles:
-    - ../ansible-arch-gui 
+    - laxd.arch_gui 
 
 - hosts: docker-hosts
   become: true

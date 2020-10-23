@@ -3,5 +3,5 @@
   roles:
     - base
     - cli
-    - ../ansible-arch-gui
-    - ../ansible-vnc
+    - laxd.arch_gui
+    - laxd.vnc

@@ -3,4 +3,4 @@
   vars:
     user: lawrence
   roles:
-    - ../ansible-arch-gui 
+    - laxd.arch_gui 

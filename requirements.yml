@@ -6,3 +6,4 @@
 - src: gantsign.intellij
 - src: dj-wasabi.telegraf
 - src: laxd.vnc
+- src: laxd.arch_gui
